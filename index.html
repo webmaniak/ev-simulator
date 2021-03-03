@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" media="screen" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/fontawesome.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/solid.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <title>EV Simulator</title>
+</head>
+<body>
+    <div id="navigation">
+        <div class="row">
+            <div class="col-md-6 offset-md-6 d-flex justify-content-end">
+                <a href="#" class="btn btn-light me-2">Bouton 1</a>
+                <a href="#" class="btn btn-light me-2">Bouton 2</a>
+            </div>
+        </div>
+    </div>
+
+    <div id="container">
+        <h1>Simulateur de changement de véhicule</h1>
+
+        <p>
+            Ce simulateur permet de réaliser un calcul rapide de ce que représente l'investissement dans des technologies plus propres comme les véhicules électriques (EV).
+            Si j'ai construit ce simulateur, c'est pour pouvoir vérifier la différence de coût sur le terme d'un <i>leasing</i> d'une durée de 4 ans (paramétrable).
+            J'espère ainsi démontrer s'il est profitable ou non de changer son véhicule à moteur à combustion pour un véhicule électrique équivalent.
+        </p>
+
+        <p>
+            <em>Note:</em> les données constructeur n'étant pas toujours présentes, le simulateur va calculer les valeurs manquantes lorsque c'est possible.
+            Par exemple, si vous avez la consommation et l'autonomie, la capacité du réservoir/batterie sera calculée automatiquement pour vous.
+        </p>
+
+        <div class="row">
+            <div class="col-md-5">
+                <fieldset>
+                    <legend>Véhicule thermique</legend>
+                    <p class="text-muted">Veuillez renseigner ici les données du véhicule thermique à comparer:</p>
+                    <label for="thermal-motor-consumption" class="form-label">Consommation:</label>
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control ms-1" id="thermal-motor-consumption" />
+                        <span class="input-group-text">l/100km</span>
+                    </div>
+
+                    <label for="thermal-motor-tank" class="form-label">Capacité du réservoir:</label>
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control ms-1" id="thermal-motor-tank" />
+                        <span class="input-group-text">l</span>
+                    </div>
+
+                    <label for="thermal-motor-range" class="form-label">Autonomie:</label>
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control ms-1" id="thermal-motor-range" />
+                        <span class="input-group-text">km</span>
+                    </div>
+
+                    <hr />
+
+                    <label for="thermal-motor-tax" class="form-label">Taxe automobile: <span class="mandatory">*</span></label>
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control ms-1" id="thermal-motor-tax" />
+                        <span class="input-group-text">CHF/an</span>
+                    </div>
+
+                    <label for="thermal-motor-insurance" class="form-label">Assurance accident: <span class="mandatory">*</span></label>
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control ms-1" id="thermal-motor-insurance" />
+                        <span class="input-group-text">CHF/an</span>
+                    </div>
+
+                    <label for="thermal-motor-initial-cost" class="form-label">Prix d'achat: <span class="mandatory">*</span></label>
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control ms-1" id="thermal-initial-cost" />
+                        <span class="input-group-text">CHF</span>
+                    </div>
+                </fieldset>
+            </div>
+
+            <div class="col-md-5 offset-md-1">
+                <fieldset>
+                    <legend>Véhicule électrique</legend>
+                    <p class="text-muted">Veuillez renseigner ici les données du véhicule électrique à comparer:</p>
+
+                    <label for="ev-consumption" class="form-label">Consommation:</label>
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control ms-1" id="ev-consumption" />
+                        <span class="input-group-text">kWh/100km</span>
+                    </div>
+
+                    <label for="ev-battery" class="form-label">Capacité de la batterie:</label>
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control ms-1" id="ev-battery" />
+                        <span class="input-group-text">kWh</span>
+                    </div>
+
+                    <label for="ev-range" class="form-label">Autonomie:</label>
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control ms-1" id="ev-range" />
+                        <span class="input-group-text">km</span>
+                    </div>
+
+                    <hr />
+
+                    <label for="ev-tax" class="form-label">Taxe automobile: <span class="mandatory">*</span></label>
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control ms-1" id="ev-tax" />
+                        <span class="input-group-text">CHF/an</span>
+                    </div>
+
+                    <label for="ev-insurance" class="form-label">Assurance accident: <span class="mandatory">*</span></label>
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control ms-1" id="ev-insurance" />
+                        <span class="input-group-text">CHF/an</span>
+                    </div>
+
+                    <label for="ev-initial-cost" class="form-label">Prix d'achat: <span class="mandatory">*</span></label>
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control ms-1" id="eval-cost" />
+                        <span class="input-group-text">CHF</span>
+                    </div>
+                </fieldset>
+            </div>
+        </div>
+
+        <div class="row">
+            <fieldset>
+                <legend>Données sur votre environnement</legend>
+                <p class="text-muted">Veuillez renseigner ici les données liées à votre environnement:</p>
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <label for="env-fuel-price" class="form-label">Prix du carburant: <span class="mandatory">*</span></label>
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control ms-1" id="env-fuel-price" value="1.6" />
+                            <span class="input-group-text">CHF/l</span>
+                        </div>
+
+                        <label for="env-electricity-price" class="form-label">Prix de l'électriicté (domestique): <span class="mandatory">*</span></label>
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control ms-1" id="env-electricity-price" value="24" />
+                            <span class="input-group-text">cts/kWh</span>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <label for="env-pub-electricity-price" class="form-label">Prix de l'électricité (borne publique): <span class="mandatory">*</span></label>
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control ms-1" id="env-pub-electricity-price" value="50" />
+                            <span class="input-group-text">cts/kWh</span>
+                        </div>
+
+                        <label for="env-pub-electricity-tax" class="form-label">Taxe de base pour recharge sur borne publique: <span class="mandatory">*</span></label>
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control ms-1" id="env-pub-electricity-tax" value="1.5" />
+                            <span class="input-group-text">CHF</span>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <label for="env-amortization" class="form-label">Durée d'amortissement du véhicule: <span class="mandatory">*</span></label>
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control ms-1" id="env-amortization" value="4" />
+                            <span class="input-group-text">ans</span>
+                        </div>
+
+                        <label for="env-monthly-km" class="form-label">Kilométrage mensuel réalisé: <span class="mandatory">*</span></label>
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control ms-1" id="env-monthly-km" />
+                            <span class="input-group-text">km</span>
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <button id="simulationStart" class="btn btn-lg btn-success" type="button">Lancer la simulation</button>
+            </div>
+        </div>
+
+        <div id="results" class="row mt-2">
+            <div class="col-md-12">
+                <h2>Résultats de la simulation</h2>
+
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>&nbsp;</th>
+                            <th>Véhicule thermique</th>
+                            <th>Véhicule électrique</th>
+                            <th>Unité</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Coût par 100km parcourus</td>
+                            <td id="thermal-cost100km"></td>
+                            <td id="ev-cost100km"></td>
+                            <td>CHF</td>
+                        </tr>
+                        <tr>
+                            <td>Coût des déplacements, par mois</td>
+                            <td id="thermal-monthly-costs"></td>
+                            <td id="ev-monthly-costs"></td>
+                            <td>CHF</td>
+                        </tr>
+                        <tr>
+                            <td>Coût des déplacements, par année</td>
+                            <td id="thermal-yearly-costs"></td>
+                            <td id="ev-yearly-costs"></td>
+                            <td>CHF</td>
+                        </tr>
+                        <tr>
+                            <td>Frais fixes (assurance, taxes)</td>
+                            <td id="thermal-fixed-costs"></td>
+                            <td id="ev-fixed-costs"></td>
+                            <td>CHF</td>
+                        </tr>
+                        <tr>
+                            <td>Coût du véhicule neuf</td>
+                            <td id="thermal-asset-value"></td>
+                            <td id="ev-asset-value"></td>
+                            <td>CHF</td>
+                        </tr>
+                        <tr>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Total de l'investissement, sur un an</strong></td>
+                            <td id="thermal-total"></td>
+                            <td id="ev-total"></td>
+                            <td>CHF</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Total de l'investissement, sur la durée d'investissement</strong></td>
+                            <td id="thermal-grand-total"></td>
+                            <td id="ev-grand-total"></td>
+                            <td>CHF</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="js/jquery-3.6.0.slim.min.js"></script>
+    <script type="text/javascript" src="js/simulator.js"></script>
+
+    <script type="text/javascript">
+    $("#results").hide();
+    $("#simulationStart").click(function() {
+        // On click on the start button, initialize simulation classes
+        var thermalVehicle = new FuelVehicle(
+            $('#thermal-motor-consumption').val(),
+            $('#thermal-motor-tank').val(),
+            $('#thermal-motor-range').val(),
+            $('#thermal-motor-tax').val(),
+            $('#thermal-motor-insurance').val(),
+            $('#thermal-motor-initial-cost').val(),
+        );
+        var electricVehicle = new ElectricVehicle(
+            $('#ev-consumption').val(),
+            $('#ev-battery').val(),
+            $('#ev-range').val(),
+            $('#ev-tax').val(),
+            $('#ev-insurance').val(),
+            $('#ev-initial-cost').val(),
+        );
+
+        // Read additional environment parameters
+        var pricePerLiter = $('#env-fuel-price').val();
+        var pricePerkWh = $('#env-electricity-price').val();
+
+        // Compute and fill in the result table
+        $('#thermal-cost100km').text(thermalVehicle.getCostsPer100km(pricePerLiter));
+        $('#ev-cost100km').text(electricVehicle.getCostsPer100km(pricePerkWh));
+
+        // Show the table if it was not previously displayed.
+        $("#results").show();
+    });
+    </script>
+</body>
+</html>

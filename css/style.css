@@ -1,0 +1,40 @@
+/*
+ * Stylesheet for EV simulator.
+ */
+
+body {
+    background-image: url('../images/electric-car-4381728_1920.jpg');
+    background-color: #cccccc;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#navigation {
+    width: 80%;
+    margin-left: 10%;
+    margin-top: 5rem;
+    margin-bottom: 2rem;
+}
+
+#container {
+    width: 80%;
+    margin-left: 10%;
+    background-color: whitesmoke;
+    border-radius: 15px;
+    border-color: 1px solid #c9c9c9;
+    padding: 2rem;
+}
+
+.test {
+    border: 1px solid red;
+}
+
+span.mandatory {
+    font-weight: bold;
+    color: #cc0000;
+}
+
+input.optional {
+    background-color: #e9ecef;
+}
